@@ -28,8 +28,8 @@ They show up in EffectCraft's Effects & Presets panel under **EVILEFFECTS**.
 | Evil Shake | Hard camera shake: position, rotation and zoom wobble with roughness, motion blur, zoom to hide edges and edge modes. |
 | Evil Warp Transform | Move, scale and rotate around a centre with a wavy warp and streaks from the original to the transformed image. |
 | Evil Motion Curves | Motion blur along a curved path: length, direction, curvature, centred or trailing. |
-
-Coming next: Evil Edge Rays and Evil Lens Flare.
+| Evil Edge Rays | Finds the edges and shoots them outward from a centre point as fading rays of light. |
+| Evil Lens Flare | Core glow, starburst, anamorphic streak, halo ring and ghosts along the flare axis. |
 
 The blur effects take at most 24 samples per pixel, which keeps them inside EffectCraft's per-frame
 compute budget for plug-ins.
