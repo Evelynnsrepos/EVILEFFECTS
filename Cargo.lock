@@ -31,6 +31,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "evil-motion-curves"
+version = "0.1.0"
+dependencies = [
+ "evil-common",
+ "serde_json",
+]
+
+[[package]]
+name = "evil-shake"
+version = "0.1.0"
+dependencies = [
+ "evil-common",
+ "serde_json",
+]
+
+[[package]]
+name = "evil-warp-transform"
+version = "0.1.0"
+dependencies = [
+ "evil-common",
+ "serde_json",
+]
+
+[[package]]
 name = "itoa"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"

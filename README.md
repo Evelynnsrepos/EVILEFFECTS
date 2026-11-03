@@ -25,8 +25,14 @@ They show up in EffectCraft's Effects & Presets panel under **EVILEFFECTS**.
 | Evil Flicker | Random brightness flicker over time: amount, speed, minimum brightness, smooth or hard cuts, seed. |
 | Evil Chroma Split | Pushes red outward and pulls blue inward from a centre point for RGB fringing. |
 | Evil Glow | Blooms the bright parts of the image in several stacked sizes, with threshold, radius, intensity and colour. |
+| Evil Shake | Hard camera shake: position, rotation and zoom wobble with roughness, motion blur, zoom to hide edges and edge modes. |
+| Evil Warp Transform | Move, scale and rotate around a centre with a wavy warp and streaks from the original to the transformed image. |
+| Evil Motion Curves | Motion blur along a curved path: length, direction, curvature, centred or trailing. |
 
-Coming next: Evil Shake, Evil Warp Transform, Evil Motion Curves blur, Evil Edge Rays and Evil Lens Flare.
+Coming next: Evil Edge Rays and Evil Lens Flare.
+
+The blur effects take at most 24 samples per pixel, which keeps them inside EffectCraft's per-frame
+compute budget for plug-ins.
 
 ## Install
 
