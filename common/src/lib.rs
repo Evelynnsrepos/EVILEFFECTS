@@ -5,6 +5,11 @@ use std::cell::RefCell;
 
 pub type Px = [f32; 4];
 
+/// Most image samples per pixel an effect takes.
+/// shortcut: EffectCraft gives a plug-in 20 000 fuel per pixel and one sample with mirrored edges costs ~700,
+/// so 24 leaves headroom; raise it if the host's fuel budget grows or sampling gets cheaper.
+pub const MAX_SAMPLES: usize = 24;
+
 thread_local! {
     static BUF: RefCell<Vec<u64>> = const { RefCell::new(Vec::new()) };
 }
@@ -107,6 +112,22 @@ pub fn sample(px: &[Px], w: usize, h: usize, x: f32, y: f32) -> Px {
         let bot = c[i] + (d[i] - c[i]) * fx;
         top + (bot - top) * fy
     })
+}
+
+/// [`sample`] with an edge mode, the manifests' `Edges` popup: 0 transparent, 1 repeat edge, 2 mirror.
+pub fn sample_edges(px: &[Px], w: usize, h: usize, x: f32, y: f32, mode: f64) -> Px {
+    let (fw, fh) = (w as f32, h as f32);
+    match mode as i32 {
+        0 if x < 0.0 || y < 0.0 || x > fw || y > fh => [0.0; 4],
+        2 => {
+            let m = |v: f32, n: f32| {
+                let v = v.rem_euclid(2.0 * n);
+                if v > n { 2.0 * n - v } else { v }
+            };
+            sample(px, w, h, m(x, fw), m(y, fh))
+        }
+        _ => sample(px, w, h, x, y),
+    }
 }
 
 /// Approximate gaussian blur: three box blurs per axis, `radius` in pixels.
