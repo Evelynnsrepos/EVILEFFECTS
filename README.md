@@ -20,6 +20,10 @@
 
 They show up in EffectCraft's Effects & Presets panel under **EVILEFFECTS**.
 
+<p align="center">
+  <img src="docs/preview.png" width="640" alt="All eight effects on a test card: Chroma Split, Edge Rays, Flicker, Glow, Lens Flare, Motion Curves, Shake and Warp Transform">
+</p>
+
 | Effect | What it does |
 |---|---|
 | Evil Flicker | Random brightness flicker over time: amount, speed, minimum brightness, smooth or hard cuts, seed. |
@@ -27,12 +31,13 @@ They show up in EffectCraft's Effects & Presets panel under **EVILEFFECTS**.
 | Evil Glow | Blooms the bright parts of the image in several stacked sizes, with threshold, radius, intensity and colour. |
 | Evil Shake | Hard camera shake: position, rotation and zoom wobble with roughness, motion blur, zoom to hide edges and edge modes. |
 | Evil Warp Transform | Move, scale and rotate around a centre with a wavy warp and streaks from the original to the transformed image. |
-| Evil Motion Curves | Motion blur along a curved path: length, direction, curvature, centred or trailing. |
+| Evil Motion Curves | Smooth motion blur along a curved path: length, direction, curvature, centred or trailing. |
 | Evil Edge Rays | Finds the edges and shoots them outward from a centre point as fading rays of light. |
 | Evil Lens Flare | Core glow, starburst, anamorphic streak, halo ring and ghosts along the flare axis. |
 
-The blur effects take at most 24 samples per pixel, which keeps them inside EffectCraft's per-frame
-compute budget for plug-ins.
+EffectCraft limits how much work a plug-in may do per pixel, so the blur effects take at most 24
+image samples per pixel. Evil Edge Rays and Evil Motion Curves split that into several passes
+(512 and up to 128 effective samples), so even long rays and blurs stay smooth.
 
 ## Install
 
