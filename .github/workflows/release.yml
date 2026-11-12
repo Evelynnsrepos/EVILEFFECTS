@@ -1,9 +1,14 @@
-# Push a tag like v0.1.0 to build every effect and publish them as a GitHub Release,
-# so people can download ready-made .wasm files instead of building from source.
+# Builds every effect and publishes them as a GitHub Release, so people can download ready-made
+# .wasm files. Start it by pushing a tag like v0.1.0, or from Actions > Release > Run workflow.
 name: Release
 on:
   push:
     tags: ["v*"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Version to release, e.g. v0.1.0"
+        required: true
 permissions:
   contents: write
 jobs:
@@ -18,6 +23,7 @@ jobs:
           mkdir EVILEFFECTS
           cp target/wasm32-unknown-unknown/release/evil_*.wasm EVILEFFECTS/
           zip -r EVILEFFECTS.zip EVILEFFECTS
-          gh release create "$GITHUB_REF_NAME" EVILEFFECTS.zip EVILEFFECTS/*.wasm --title "EVILEFFECTS $GITHUB_REF_NAME" --generate-notes
+          gh release create "$TAG" EVILEFFECTS.zip EVILEFFECTS/*.wasm --target "$GITHUB_SHA" --title "EVILEFFECTS $TAG" --generate-notes
         env:
+          TAG: ${{ inputs.tag || github.ref_name }}
           GH_TOKEN: ${{ github.token }}
