@@ -41,12 +41,69 @@ image samples per pixel. Evil Edge Rays and Evil Motion Curves split that into s
 
 ## Install
 
-Each effect is one `.wasm` file (EffectCraft plug-in API v1). In EffectCraft choose
-**Effect ▸ Load Effect Plug-in…** and pick the file, or drop the files into the `Plug-ins` folder
-next to EffectCraft's settings so they load at every start-up. Plug-ins work in the desktop app
-and the CLI, not the web app.
+You don't need to know how to code. Each effect is one small file ending in `.wasm`, and you hand
+those files to EffectCraft.
 
-## Build
+> **Heads up:** the green **Code ▸ Download ZIP** button gives you the *source code*, not the
+> effects. EffectCraft can't open that. Use the Releases page below instead.
+
+### 1. Download the effects
+
+1. Go to the [**Releases** page](https://github.com/Evelynnsrepos/EVILEFFECTS/releases/latest)
+   (also linked on the right-hand side of this repo's main page).
+2. Under **Assets**, click **`EVILEFFECTS.zip`** to download it.
+3. Find the file in your Downloads folder and unzip it (Windows: right-click ▸ **Extract All…**;
+   Mac: double-click it). You now have a folder called `EVILEFFECTS` with eight `.wasm` files in it,
+   one per effect, for example `evil_glow.wasm`.
+
+### 2. Put them into EffectCraft
+
+**Easiest way, from inside EffectCraft:**
+
+1. Open the EffectCraft **desktop app** (plug-ins don't work in the web/browser version).
+2. In the top menu choose **Effect ▸ Install Effect Plug-in…**
+3. Pick one of the `.wasm` files from the `EVILEFFECTS` folder and click **Open**.
+4. Repeat for each effect you want. EffectCraft copies them in and loads them every time it starts.
+
+**Or copy them all at once by hand:**
+
+1. Close EffectCraft.
+2. Open EffectCraft's settings folder:
+   - **Windows:** press <kbd>Win</kbd>+<kbd>R</kbd>, type `%APPDATA%\EffectCraft` and press Enter.
+   - **Mac:** in Finder choose **Go ▸ Go to Folder…**, type
+     `~/Library/Application Support/EffectCraft` and press Enter.
+   - **Linux:** `~/.config/effectcraft`
+3. If there is no folder called `Plug-ins` in there, make one (spelled exactly like that).
+4. Copy all the `.wasm` files into `Plug-ins`.
+5. Start EffectCraft again.
+
+### 3. Use them
+
+Open the **Effects & Presets** panel and look under **EVILEFFECTS**. Drag an effect onto a layer,
+just like any built-in effect.
+
+### Updating
+
+Delete the old `evil_*.wasm` files from the `Plug-ins` folder, then install the new ones and
+restart EffectCraft. (EffectCraft won't overwrite a plug-in that's already there.)
+
+### Something not working?
+
+- **I only see source code, no `.wasm` files.** You downloaded the ZIP from the green **Code**
+  button. Go to [Releases](https://github.com/Evelynnsrepos/EVILEFFECTS/releases/latest) instead.
+- **"Already installed".** That effect is already in your `Plug-ins` folder. To update it, delete
+  the old file first (see *Updating*).
+- **The effects don't show up.** Check that the files end in `.wasm` (not `.zip`) and sit directly
+  inside `Plug-ins`, not in a folder inside it. Then restart EffectCraft.
+- **There's no Install Effect Plug-in… menu.** You're probably in the web version. Use the desktop app.
+- **Still stuck?** Ask on [Discord](https://discord.gg/AGfaBwNKfN) or
+  [open an issue](https://github.com/Evelynnsrepos/EVILEFFECTS/issues/new).
+
+## Build from source (for developers)
+
+Only needed if you want to change the code. Releases are built automatically when a `v*` tag is
+pushed (see `.github/workflows/release.yml`).
+
 
 ```sh
 rustup target add wasm32-unknown-unknown
