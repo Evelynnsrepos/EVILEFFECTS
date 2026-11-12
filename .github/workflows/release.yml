@@ -1,5 +1,5 @@
-# Push a tag like v0.1.0 to build every effect and publish them as a GitHub Release,
-# (or run it from the Actions tab with a version number), so people can download ready-made .wasm files instead of building from source.
+# Builds every effect and publishes them as a GitHub Release, so people can download ready-made
+# .wasm files. Start it by pushing a tag like v0.1.0, or from Actions > Release > Run workflow.
 name: Release
 on:
   push:
